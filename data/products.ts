@@ -199,25 +199,25 @@ export const instagramFeed = [
 
 export const testimonials = [
   {
-    name: "Ananya R.",
-    location: "Mumbai",
+    name: "Sowmya Varma",
+    location: "MVP Colony, Vizag",
     avatar: img("avatar-2"),
     quote:
-      "My Kanjivaram arrived wrapped like an heirloom. The zari catches light in every photo — my mother cried before I did.",
+      "We purchased my wedding muhurtham saree from Kancheepuram Vakula Silks. The pure gold zari korvai weave and the rich silk luster looked stunning in every wedding portrait. The finest silk destination in Vizag!",
   },
   {
-    name: "Meera S.",
-    location: "Bengaluru",
+    name: "Lakshmi Prasanna",
+    location: "Siripuram, Vizag",
     avatar: img("avatar-4"),
     quote:
-      "My wedding saree arrived in the most exquisite heirloom box. The pure silk drape and weight of the pallu was breathtaking.",
+      "Finding authentic heirloom Kanjivarams in Vizag used to mean traveling all the way to Kanchipuram. Kancheepuram Vakula Silks has brought that exact royal handloom heritage right to our city.",
   },
   {
-    name: "Kavya N.",
-    location: "Delhi",
+    name: "Dr. Radhika Rao",
+    location: "Waltair Uplands, Vizag",
     avatar: img("avatar-1"),
     quote:
-      "Effortless, quietly luxurious, and the blouse matching was spot on. Kancheepuram Vakula Silks is now my first stop for every occasion.",
+      "The silk purity and zari weight are truly unmatched. I wore their emerald green bridal saree for our family reception at Beach Road, and everyone kept asking about the bespoke drape. An absolute treasure.",
   },
 ];
 

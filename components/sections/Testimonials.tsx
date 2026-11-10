@@ -31,7 +31,7 @@ export function Testimonials() {
               <p className="flex items-center gap-1 font-medium">
                 <Star className="h-3.5 w-3.5 fill-gold text-gold" /> 4.9/5
               </p>
-              <p className="text-espresso/60">500+ Happy Customers</p>
+              <p className="text-espresso/60">500+ Happy Patrons in Vizag</p>
             </div>
           </div>
         </div>
