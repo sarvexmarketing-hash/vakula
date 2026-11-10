@@ -1,49 +1,39 @@
 "use client";
 
 import Image from "next/image";
-import { Play } from "lucide-react";
+import { Play, Volume2, VolumeX, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "@/lib/gsap";
 import { MaskedLines } from "@/components/ui/MaskedLines";
 import { useLenis } from "@/components/providers/LenisProvider";
-import { useImageSequence } from "@/hooks/useImageSequence";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { showcaseLooks } from "@/data/products";
 
-const FRAME_COUNT = 132;
-const FILM_VERSION = 4;
-const frameSrc = (i: number) => `/seq/saree_${String(i + 1).padStart(3, "0")}.webp?v=${FILM_VERSION}`;
-
 export function Hero() {
   const root = useRef<HTMLElement>(null);
-  const canvas = useRef<HTMLCanvasElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const reduced = useReducedMotion();
   const lenis = useLenis();
-  const { draw, progress, ready } = useImageSequence({
-    canvas,
-    count: FRAME_COUNT,
-    src: frameSrc,
-    subjectX: 0.58,
-    screenX: 0.64,
-    zoom: 1.12,
-    enabled: !reduced,
-  });
   const [revealed, setRevealed] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [filmModalOpen, setFilmModalOpen] = useState(false);
 
   useEffect(() => {
-    if (reduced || ready) {
-      setRevealed(true);
-      return;
-    }
-    const fallback = setTimeout(() => setRevealed(true), 6000);
-    return () => clearTimeout(fallback);
-  }, [ready, reduced]);
+    const timer = setTimeout(() => setRevealed(true), 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (!lenis) return;
-    if (revealed) lenis.start();
+    if (revealed && !filmModalOpen) lenis.start();
     else lenis.stop();
-  }, [lenis, revealed]);
+  }, [lenis, revealed, filmModalOpen]);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [revealed]);
 
   useEffect(() => {
     const el = root.current;
@@ -51,30 +41,19 @@ export function Hero() {
 
     const mm = gsap.matchMedia(el);
     mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const film = { frame: 0 };
-
       gsap
         .timeline({
           defaults: { ease: "none" },
           scrollTrigger: {
             trigger: el,
             start: "top top",
-            end: "+=320%",
+            end: "+=220%",
             pin: true,
             scrub: 1,
             onUpdate: (self) =>
               document.documentElement.toggleAttribute("data-hero-framed", self.progress > 0.78),
           },
         })
-        .to(
-          film,
-          {
-            frame: FRAME_COUNT - 1,
-            duration: 0.8,
-            onUpdate: () => draw(Math.round(film.frame)),
-          },
-          0,
-        )
         .to("[data-hero-copy]", { yPercent: -30, opacity: 0, duration: 0.18 }, 0.04)
         .fromTo("[data-chapter]", { opacity: 0 }, { opacity: 1, duration: 0.08 }, 0.3)
         .from("[data-chapter-line]", { yPercent: 110, stagger: 0.03, duration: 0.1, ease: "power2.out" }, 0.3)
@@ -100,7 +79,7 @@ export function Hero() {
     });
 
     return () => mm.revert();
-  }, [draw]);
+  }, []);
 
   useEffect(() => {
     const el = root.current;
@@ -123,7 +102,7 @@ export function Hero() {
         stagger: 0.08,
         delay: 0.65,
       });
-      gsap.from("[data-hero-zoom]", { scale: 1.2, duration: 2.6, ease: "power3.out" });
+      gsap.from("[data-hero-zoom]", { scale: 1.15, duration: 2.4, ease: "power3.out" });
     }, el);
 
     return () => ctx.revert();
@@ -131,6 +110,7 @@ export function Hero() {
 
   return (
     <>
+      {/* Intro Reveal Screen */}
       <div
         aria-hidden
         className={`fixed inset-0 z-[60] flex flex-col items-center justify-center bg-ivory transition-opacity duration-1000 ${
@@ -139,12 +119,9 @@ export function Hero() {
       >
         <p className="font-serif text-2xl sm:text-3xl tracking-[0.2em] text-espresso">KANCHEEPURAM VAKULA SILKS</p>
         <div className="mt-6 h-px w-56 overflow-hidden bg-espresso/10">
-          <div
-            className="h-full origin-left bg-gold transition-transform duration-300"
-            style={{ transform: `scaleX(${progress})` }}
-          />
+          <div className="h-full origin-left bg-gold animate-pulse" />
         </div>
-        <p className="eyebrow mt-4 text-[10px] text-espresso/50">Loading the film · {Math.round(progress * 100)}%</p>
+        <p className="eyebrow mt-4 text-[10px] text-espresso/50">Atelier · Handwoven Heritage</p>
       </div>
 
       <section id="top" ref={root} className="relative h-screen overflow-hidden bg-ivory" aria-label="Spring Summer 26 film">
@@ -155,20 +132,38 @@ export function Hero() {
         >
           <div data-hero-zoom className="absolute inset-0">
             <div data-hero-scrub className="absolute inset-0">
-              <Image
-                src={`/images/hero-poster.jpg?v=${FILM_VERSION}`}
-                alt="Bride in a rust and gold bridal saree with kundan jewellery, adjusting her earrings in soft light"
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover object-center md:object-left"
-              />
-              <canvas ref={canvas} className="absolute inset-0 h-full w-full" aria-hidden />
+              <video
+                ref={videoRef}
+                autoPlay
+                loop
+                muted={isMuted}
+                playsInline
+                preload="auto"
+                poster="/images/hero-poster.jpg"
+                className="absolute inset-0 h-full w-full object-cover object-center"
+              >
+                <source src="/videos/hero-background.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-espresso/75 via-espresso/30 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-espresso/60 to-transparent" />
 
+          {/* Gradients for text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-espresso/80 via-espresso/40 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-espresso/70 to-transparent" />
+
+          {/* Audio toggle button on the hero video */}
+          <button
+            onClick={() => setIsMuted(!isMuted)}
+            className="absolute bottom-8 right-8 z-20 flex items-center gap-2.5 rounded-full border border-ivory/30 bg-espresso/50 px-4 py-2.5 text-xs text-ivory backdrop-blur-md transition-all hover:bg-espresso/80 hover:scale-105"
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
+          >
+            {isMuted ? <VolumeX className="h-4 w-4 text-gold" /> : <Volume2 className="h-4 w-4 text-gold" />}
+            <span className="hidden sm:inline font-sans text-[11px] uppercase tracking-widest text-ivory/90">
+              {isMuted ? "Sound Off" : "Sound On"}
+            </span>
+          </button>
+
+          {/* Intermediate chapter reveal on scroll */}
           <div data-chapter className="pointer-events-none absolute inset-0 opacity-0">
             <div className="absolute inset-0 bg-gradient-to-r from-espresso/70 via-espresso/20 to-transparent" />
             <div className="relative mx-auto flex h-full max-w-[1440px] items-center px-6 md:px-10">
@@ -196,6 +191,7 @@ export function Hero() {
           </div>
         </div>
 
+        {/* Hero copy */}
         <div
           data-hero-copy
           className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-6 pb-8 pt-24 text-ivory md:px-10"
@@ -222,16 +218,45 @@ export function Hero() {
             >
               Shop the Collection
             </a>
-            <a
-              href="#lookbook"
+            <button
+              onClick={() => {
+                setFilmModalOpen(true);
+                setIsMuted(false);
+              }}
               className="group flex items-center gap-3 rounded-full border border-ivory/50 px-7 py-[15px] text-[13px] uppercase tracking-[0.2em] backdrop-blur-sm transition-colors hover:bg-ivory/10"
             >
               <Play className="h-3.5 w-3.5 fill-current" />
               Watch the Film
-            </a>
+            </button>
           </div>
         </div>
       </section>
+
+      {/* Film Lightbox Modal */}
+      {filmModalOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-espresso/90 backdrop-blur-xl p-4 md:p-10"
+          role="dialog"
+          aria-modal="true"
+        >
+          <button
+            onClick={() => setFilmModalOpen(false)}
+            className="absolute top-6 right-6 z-10 grid h-12 w-12 place-items-center rounded-full bg-ivory/10 text-ivory transition-transform hover:scale-110 hover:bg-ivory/20"
+            aria-label="Close film"
+          >
+            <X className="h-6 w-6" />
+          </button>
+          <div className="relative aspect-video w-full max-w-5xl overflow-hidden rounded-3xl shadow-2xl bg-black">
+            <video
+              autoPlay
+              controls
+              playsInline
+              className="h-full w-full object-cover"
+              src="/videos/hero-background.mp4"
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }
