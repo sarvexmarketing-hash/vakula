@@ -137,7 +137,7 @@ export function Hero() {
           revealed ? "pointer-events-none opacity-0" : "opacity-100"
         }`}
       >
-        <p className="font-serif text-3xl tracking-[0.3em] text-espresso">VAKULA SILKS</p>
+        <p className="font-serif text-2xl sm:text-3xl tracking-[0.2em] text-espresso">KANCHEEPURAM VAKULA SILKS</p>
         <div className="mt-6 h-px w-56 overflow-hidden bg-espresso/10">
           <div
             className="h-full origin-left bg-gold transition-transform duration-300"

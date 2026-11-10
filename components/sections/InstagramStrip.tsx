@@ -50,7 +50,7 @@ export function InstagramStrip() {
         className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-3 rounded-full bg-ivory px-7 py-4 text-sm shadow-xl transition-transform hover:scale-105"
       >
         <Instagram className="h-4 w-4 text-gold" />
-        <span className="font-serif text-base">@vakulasilks.official</span>
+        <span className="font-serif text-base">@kancheepuramvakulasilks.official</span>
         <span className="text-espresso/40">&mdash;</span>
         <span className="eyebrow text-[10px]">Follow Us</span>
       </a>

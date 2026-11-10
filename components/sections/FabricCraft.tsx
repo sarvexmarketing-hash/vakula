@@ -7,7 +7,7 @@ import { useSilkReveal } from "@/hooks/useSilkReveal";
 import { MaskedLines } from "@/components/ui/MaskedLines";
 
 const copy =
-  "Every Vakula Silks piece begins as a sketch and ends in the hands of artisans whose families have woven, embroidered and draped for generations. Zari is twisted by hand, borders are hemmed stitch by stitch, and each silhouette is fitted to you — not to a size chart.";
+  "Every Kancheepuram Vakula Silks piece begins as a sketch and ends in the hands of artisans whose families have woven, embroidered and draped for generations. Zari is twisted by hand, borders are hemmed stitch by stitch, and each silhouette is fitted to you — not to a size chart.";
 
 const stats = [
   { value: 120, suffix: "+", label: "hrs handwork" },

@@ -8,7 +8,7 @@ import { useSilkReveal } from "@/hooks/useSilkReveal";
 const columns = [
   { title: "Shop", links: ["New In", "Kanjivaram", "Banarasi", "Chanderi", "Bridal Sarees"] },
   { title: "Help", links: ["Draping Guide", "Shipping & Returns", "Silk Care Guide", "FAQs"] },
-  { title: "Contact", links: ["hello@vakulasilks.in", "+91 98765 43210", "WhatsApp Concierge", "Book an Appointment"] },
+  { title: "Contact", links: ["hello@kancheepuramvakulasilks.in", "+91 98765 43210", "WhatsApp Concierge", "Book an Appointment"] },
 ];
 
 const payments = ["UPI", "Visa", "Mastercard", "Razorpay"];
@@ -29,15 +29,15 @@ export function Footer() {
     <footer ref={root} className="relative overflow-hidden bg-espresso px-4 pb-8 pt-40 md:px-10">
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-6 select-none text-center font-serif text-[22vw] leading-none tracking-tight text-ivory/[0.06]"
+        className="pointer-events-none absolute inset-x-0 top-6 select-none text-center font-serif text-[11vw] leading-none tracking-tight text-ivory/[0.06] whitespace-nowrap"
       >
-        VAKULA SILKS
+        KANCHEEPURAM VAKULA SILKS
       </span>
 
       <div data-silk className="relative z-10 mx-auto max-w-[1280px] rounded-3xl bg-ivory p-8 shadow-2xl md:p-14">
         <div className="grid gap-12 md:grid-cols-[1.3fr_2fr]">
           <div>
-            <p className="font-serif text-3xl tracking-[0.18em]">VAKULA SILKS</p>
+            <p className="font-serif text-2xl md:text-3xl tracking-[0.12em]">KANCHEEPURAM VAKULA SILKS</p>
             <p className="eyebrow mt-8 text-gold">Newsletter</p>
             <h3 className="mt-3 font-serif text-3xl leading-tight">Get 10% off your first saree</h3>
             {joined ? (
@@ -98,7 +98,7 @@ export function Footer() {
         <div className="hairline my-10" />
 
         <div className="flex flex-col-reverse items-start justify-between gap-6 text-xs text-espresso/60 md:flex-row md:items-center">
-          <p>&copy; {new Date().getFullYear()} Vakula Silks Atelier. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Kancheepuram Vakula Silks Atelier. All rights reserved.</p>
           <ul className="flex flex-wrap gap-2" aria-label="Accepted payment methods">
             {payments.map((p) => (
               <li

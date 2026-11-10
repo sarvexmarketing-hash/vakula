@@ -18,9 +18,9 @@ const sans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "VAKULA SILKS — Dressed in Poetry",
+  title: "KANCHEEPURAM VAKULA SILKS — Dressed in Poetry",
   description:
-    "Pure silk sarees, Banarasi, Kanjivaram, and heritage weaves. Handcrafted luxury sarees from the Vakula Silks atelier.",
+    "Pure silk sarees, Banarasi, Kanjivaram, and heritage weaves. Handcrafted luxury sarees from the Kancheepuram Vakula Silks atelier.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

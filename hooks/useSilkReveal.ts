@@ -4,7 +4,7 @@ import { useEffect, type RefObject } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 /**
- * Wires the shared Vakula Silks entrance language inside `scope`:
+ * Wires the shared Kancheepuram Vakula Silks entrance language inside `scope`:
  * - `[data-silk]`      fade + rise + un-skew, staggered per batch
  * - `[data-lines]`     masked headline lines (children marked `[data-line]`) slide up
  * - `[data-kenburns]`  slow scale 1.15 → 1 scrubbed while the frame crosses the viewport

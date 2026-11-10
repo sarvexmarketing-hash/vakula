@@ -217,7 +217,7 @@ export const testimonials = [
     location: "Delhi",
     avatar: img("avatar-1"),
     quote:
-      "Effortless, quietly luxurious, and the blouse matching was spot on. Vakula Silks is now my first stop for every occasion.",
+      "Effortless, quietly luxurious, and the blouse matching was spot on. Kancheepuram Vakula Silks is now my first stop for every occasion.",
   },
 ];
 
