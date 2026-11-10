@@ -34,8 +34,8 @@ export function Navbar() {
         solid ? "bg-ivory/80 text-espresso shadow-sm backdrop-blur-md" : "bg-transparent text-ivory"
       }`}
     >
-      <nav className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-6 md:px-10">
-        <a href="#top" className="font-serif text-lg sm:text-xl md:text-2xl tracking-[0.14em]">
+      <nav className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-4 sm:px-6 md:px-10">
+        <a href="#top" className="font-serif text-sm sm:text-lg md:text-2xl tracking-[0.08em] sm:tracking-[0.14em] whitespace-nowrap">
           KANCHEEPURAM VAKULA SILKS
         </a>
 

@@ -140,21 +140,21 @@ export function Hero() {
                 playsInline
                 preload="auto"
                 poster="/images/hero-poster.jpg"
-                className="absolute inset-0 h-full w-full object-cover object-center"
+                className="absolute inset-0 h-full w-full object-cover object-[68%_center] md:object-center"
               >
                 <source src="/videos/hero-background.mp4" type="video/mp4" />
               </video>
             </div>
           </div>
 
-          {/* Gradients for text contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-espresso/80 via-espresso/40 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-espresso/70 to-transparent" />
+          {/* Gradients: on mobile, top is bright & open so video shines through; bottom has text gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-espresso/90 via-espresso/30 to-transparent md:bg-gradient-to-r md:from-espresso/80 md:via-espresso/40 md:to-transparent" />
+          <div className="hidden md:block absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-espresso/70 to-transparent" />
 
           {/* Audio toggle button on the hero video */}
           <button
             onClick={() => setIsMuted(!isMuted)}
-            className="absolute bottom-8 right-8 z-20 flex items-center gap-2.5 rounded-full border border-ivory/30 bg-espresso/50 px-4 py-2.5 text-xs text-ivory backdrop-blur-md transition-all hover:bg-espresso/80 hover:scale-105"
+            className="absolute top-24 right-4 z-20 flex items-center gap-2 rounded-full border border-ivory/30 bg-espresso/60 px-3.5 py-2 text-xs text-ivory backdrop-blur-md transition-all hover:bg-espresso/80 hover:scale-105 md:top-auto md:bottom-8 md:right-8 md:px-4 md:py-2.5"
             aria-label={isMuted ? "Unmute video" : "Mute video"}
           >
             {isMuted ? <VolumeX className="h-4 w-4 text-gold" /> : <Volume2 className="h-4 w-4 text-gold" />}
@@ -194,27 +194,27 @@ export function Hero() {
         {/* Hero copy */}
         <div
           data-hero-copy
-          className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-6 pb-8 pt-24 text-ivory md:px-10"
+          className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-end pb-14 pt-24 text-ivory md:justify-center md:pb-8 px-6 md:px-10"
         >
-          <p data-intro className="eyebrow mb-6 text-gold [@media(max-height:640px)]:mb-3">
+          <p data-intro className="eyebrow mb-2 text-gold md:mb-6 [@media(max-height:640px)]:mb-2">
             Spring · Summer &rsquo;26
           </p>
           <MaskedLines
             as="h1"
             lines={["Dressed in", "Poetry."]}
-            className="font-serif text-[clamp(2.75rem,min(10vw,16vh),9.5rem)] leading-[0.95] tracking-tight"
+            className="font-serif text-[clamp(2.35rem,7.5vw,9.5rem)] leading-[0.95] tracking-tight"
           />
           <p
             data-intro
-            className="mt-8 max-w-md text-[15px] leading-relaxed text-ivory/85 [@media(max-height:640px)]:mt-4"
+            className="mt-3 max-w-md text-[13px] leading-relaxed text-ivory/85 md:mt-8 md:text-[15px] [@media(max-height:640px)]:mt-2"
           >
             Banarasi, Kanjivaram and Chanderi sarees woven from pure mulberry silks and gilded zari &mdash; hand-finished
             in our atelier for the moments you will cherish forever.
           </p>
-          <div data-intro className="mt-10 flex flex-wrap items-center gap-4 [@media(max-height:640px)]:mt-6">
+          <div data-intro className="mt-5 flex flex-wrap items-center gap-3 md:mt-10 md:gap-4 [@media(max-height:640px)]:mt-4">
             <a
               href="#new-in"
-              className="rounded-full bg-gold px-8 py-4 text-[13px] font-medium uppercase tracking-[0.2em] text-espresso transition-transform duration-300 hover:-translate-y-0.5"
+              className="rounded-full bg-gold px-6 py-3.5 text-xs font-medium uppercase tracking-[0.2em] text-espresso transition-transform duration-300 hover:-translate-y-0.5 md:px-8 md:py-4 md:text-[13px]"
             >
               Shop the Collection
             </a>
@@ -223,7 +223,7 @@ export function Hero() {
                 setFilmModalOpen(true);
                 setIsMuted(false);
               }}
-              className="group flex items-center gap-3 rounded-full border border-ivory/50 px-7 py-[15px] text-[13px] uppercase tracking-[0.2em] backdrop-blur-sm transition-colors hover:bg-ivory/10"
+              className="group flex items-center gap-2.5 rounded-full border border-ivory/50 px-5 py-3 text-xs uppercase tracking-[0.2em] backdrop-blur-sm transition-colors hover:bg-ivory/10 md:px-7 md:py-[15px] md:text-[13px]"
             >
               <Play className="h-3.5 w-3.5 fill-current" />
               Watch the Film
